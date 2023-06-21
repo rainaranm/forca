@@ -22,14 +22,15 @@ func resultado(palavraSecreta string, entradasValidas []string) (resposta string
 	//Desta forma, sempre terá ao menos um caractere em "todasEntradas"
 	todasEntradas += "@"
 
-	//Matriz para comparar todos os caracteres da palavra secreta com cada entrada do usuário
+	//Matriz para comparar cada caractere da palavra secreta com cada entrada do usuário
 	for i := 0; i < len(palavraSecreta); i++ {
 		for j := 0; j < len(entradasValidas); {
 
-			/* Se forem diferentes, então irá comparar o próximo carac. do usuário com carac. da palavra atual:
-			- Se forem iguais, então irá seguir para o próximo carac. do usuário;
-			- Se não, um traçado "_" será impresso e retornará à matriz para comparar o próximo carac. do usuário
-			*/
+			/* Se o caractere atual da palavra secreta for diferente da entrada atual,
+			então analisará se há a próxima entrada na palavra:
+				- Se sim, o loop continuará;
+				- Se não, um traçado (_) será impresso e o loop j rompido,
+				  indo para a próxima letra da palavra secreta.*/
 			if entradasValidas[j] != string(palavraSecreta[i]) {
 				sum := j + 1
 				if strings.Contains(palavraSecreta, string(todasEntradas[sum])) {
@@ -40,7 +41,8 @@ func resultado(palavraSecreta string, entradasValidas []string) (resposta string
 					break
 				}
 
-				//Se forem iguais, o caractere será impressa, então retonará à matriz para comparar o próximo carac. da palavra
+				/*Se forem iguais, o caractere será impresso, então retonará ao início da matriz
+				para comparar o próximo carac. da palavra */
 			} else {
 				tracejado += string(palavraSecreta[i])
 				break
@@ -89,14 +91,13 @@ func entrada(tracejado, palavraSecreta string, entradas []string, erros, nTentat
 
 	caractereAtual = strings.ToTitle(caractereAtual)
 
-	//entradas obterá todas as tentativas do usuário
+	//slice entradas obterá todas as tentativas do usuário
 	entradas = append(entradas, caractereAtual)
 
 	//O caractere "1" irá finalizar o jogo. FIXME: alterar para tecla "esc"
 	if caractereAtual == "1" {
 		fmt.Print("saiu")
 
-		//Se o usuário digitar algo além de "1"
 	} else {
 
 		//Se a palavra secreta tiver o caractere atual
@@ -117,7 +118,7 @@ func entrada(tracejado, palavraSecreta string, entradas []string, erros, nTentat
 
                                       Obrigado!
                                     O/ /
-| Parabéns, vc completou a forca!! /|
+| Parabéns, você completou a forca!! /|
                                    / \
 								   
 `)
@@ -176,7 +177,7 @@ func entrada(tracejado, palavraSecreta string, entradas []string, erros, nTentat
 
 }
 
-// forca irá apresentar quantidade de caracteres da palavra secreta e o desenho da forca correpondente a quantidade de erros
+// forca irá apresentar a quantidade de caracteres da palavra secreta e o desenho da forca correpondente à quantidade de erros
 func forca(palavraSecreta string, erros int) {
 	forca := ""
 
@@ -271,13 +272,13 @@ func main() {
 	//TODO: fazer listas de palavras de acordo com temas (animais, objetos...) para o usuário escolher
 
 	//Implementando as palavras secretas
-	palavrasSecretas = append(palavrasSecretas, "casamento", "salada", "cinema",
-		"cadeira", "coelho", "janela", "pescador", "biblioteca", "semente", "olho", "cachorro", "esqueleto", "bode", "chuveiro")
+	palavrasSecretas = append(palavrasSecretas, "casa", "casamento", "salada", "cinema",
+		"cadeira", "coelho", "janela", "pescador", "biblioteca", "semente", "olho", "cachorro", "esqueleto", "bode", "chuveiro", "chinelo")
 
 	//Variáveis
 	erros, nTentativas := 0, 6
 	index := len(palavrasSecretas) - 1
-	palavraSecreta := strings.ToTitle(palavrasSecretas[rand.Intn(index)]) //strings.ToTitle converterá todas as letras para maiúsculas 
+	palavraSecreta := strings.ToTitle(palavrasSecretas[rand.Intn(index)]) //strings.ToTitle converterá todas as letras para maiúsculas
 	tracejado := " "
 
 	//Interface inicial
@@ -285,6 +286,7 @@ func main() {
  ---------------
 * JOGO DA FORCA *
  ---------------`)
+
 	forca(palavraSecreta, erros)
 
 	// Tracejado inicial
