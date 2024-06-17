@@ -117,9 +117,9 @@ func entrada(tracejado, palavraSecreta string, entradas []string, erros, nTentat
 				fmt.Print(`------------------------------------------------
 
                                       Obrigado!
-                                    O/ /
+                                      O/ /
 | Parabéns, você completou a forca!! /|
-                                   / \
+                                     / \
 								   
 `)
 
@@ -195,13 +195,11 @@ func forca(palavraSecreta string, erros int) {
 |
 |
 |
-|
 |`
 	case 1:
 		forca = ` ________
 |        |
 |        O
-|
 |
 |
 |
@@ -214,7 +212,6 @@ func forca(palavraSecreta string, erros int) {
 |        |
 |
 |
-|
 |`
 
 	case 3:
@@ -222,7 +219,6 @@ func forca(palavraSecreta string, erros int) {
 |        |
 |        O
 |       /|
-|
 |
 |
 |`
@@ -234,7 +230,6 @@ func forca(palavraSecreta string, erros int) {
 |       /|\
 |       
 |
-|
 |`
 
 	case 5:
@@ -244,7 +239,6 @@ func forca(palavraSecreta string, erros int) {
 |       /|\
 |       /
 |
-|
 |`
 
 	case 6:
@@ -253,7 +247,6 @@ func forca(palavraSecreta string, erros int) {
 |       \O/ /
 |        |
 |       / \ 
-|
 |
 |`
 
